@@ -15,7 +15,7 @@ export class AddEditBrandComponent implements OnInit {
 
   brandForm!: FormGroup;
 
-  modalTitle: string = "New brand";
+  modalTitle: string = "New Brand";
 
   constructor(
     private brandService: BrandService,
