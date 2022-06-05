@@ -1,0 +1,82 @@
+<page-top [currentActive]="'Stores'"></page-top>
+<div class="d-flex justify-content-between px-2 py-3 bg-light">
+   <div class="table_action_btns">
+      <div class="btn-group" role="group" aria-label="Button group">
+         <button type="button" class="btn btn-sm btn-outline-success" (click)="refreshProducts()" [disabled]="loading">Refresh</button>         
+         <button type="button" class="btn btn-sm btn-outline-info" [disabled]="loading">Convert to PDF</button>
+         <button type="button" class="btn btn-sm btn-outline-primary" (click)="open()" [disabled]="loading">New Store</button>
+         <button type="button" class="btn btn-sm btn-outline-danger" [disabled]="loading">Delete All</button>     
+      </div>
+   </div>
+   <form>
+      <div class="form-group form-inline" style="margin-bottom: 0 !important;">
+         Search:<input class="form-control ml-2 py-0 search_input" type="text"/>
+      </div>
+   </form>
+</div>
+<div *ngIf="!loading; else loadingMessage">
+   <table class="table table-striped table-inverse table-bordered table-inverse">
+      <thead class="thead-inverse">
+         <tr>
+            <th scope="col" class="text-center th_min">
+               <div class="form-check">
+                  <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" checked>
+               </div>
+            </th>
+            <th></th>
+            <th class="th_min">Id</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+         </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let store of stores; index as index">       
+               <td class="text-center td_checkbox td_min">
+                  <div class="form-check">
+                     <input class="form-check-input" name="" id="" type="checkbox" value="checkedValue" checked>
+                  </div>
+               </td>        
+               <td class="text-center"> 
+                  <!-- <a type="link" class="btn-link pr-1" 
+                     style="margin-right: .1rem" [routerLink]="['/admin/store',store.id]">
+                        <span class="btn-link-info"><i class="fas fa-glasses" aria-hidden="true"></i></span>Details
+                  </a> -->
+                  <a type="link" class="btn-link pr-1" (click)="open(store)" style="margin-right: .1rem">
+                        <span class="btn-link-primary"><i class="fas fa-pen" aria-hidden="true"></i></span>Edit
+                  </a>
+                  <a type="link" class="btn-link pr-1" 
+                     style="margin-right: .1rem" (click)="deleteStore(store.id)">
+                        <span class="btn-link-danger"><i class="fas fa-minus-circle"></i></span>Delete
+                  </a>
+               </td>
+               <td class="link_row_item td_min" scope="row" [routerLink]="[store.id]">{{store.id}}</td>               
+               <td class="link_row_item" [routerLink]="[store.id]" data-toggle="tooltip" data-placement="top" title="Click to view this store">{{store.name}}</td>               
+               <td>{{store.phone}}</td>
+               <td>{{store.email}}</td>
+               <td>{{store.street}}</td>
+               <td>{{store.city}}</td>
+               <td>{{store.state}}</td>
+               <td>{{store.zipCode}}</td>
+            </tr>
+         </tbody>
+   </table>
+   <div class="d-flex justify-content-between p-2">
+      <p *ngIf="(last != collectionSize) || ((last == collectionSize) && (numberOfElements != 1)); else altPageReport">Showing {{first}} to {{last}} of {{collectionSize}} entries</p>
+      <ng-template #altPageReport>Showing last of {{collectionSize}} entries</ng-template>
+      <ngb-pagination [hidden]="collectionSize < pageSize" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [pageSize]="pageSize"
+         [boundaryLinks]="true" [directionLinks]="true" [rotate]="true" (pageChange)="loadStores()">
+      </ngb-pagination>
+      <select [hidden]="collectionSize < 10" class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="loadStores(page=0)">
+         <option [ngValue]="10" selected>10 rows</option>
+         <option [ngValue]="15">15 rows</option>
+         <option [ngValue]="20">20 rows</option>
+         <option [ngValue]="50">50 rows</option>
+      </select>
+   </div>
+</div>
+<ng-template #loadingMessage>Loading...</ng-template>

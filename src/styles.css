@@ -1,1 +1,98 @@
-/* You can add global styles to this file, and also import other style files */
+.search_input {
+   font-size: .9rem;
+}
+
+.dropdown_btn {
+   font-size: .85rem;
+}
+   
+table th, td {
+   padding-top: .31rem !important;
+   padding-bottom: .31rem !important;
+   padding-left: .2rem !important;
+   font-size: .79rem;
+}
+
+table td.td_checkbox {
+   padding-top: .225rem !important;
+   padding-bottom: .225rem !important;
+}
+
+table td.td_img {
+   padding-top: 0rem !important;
+   padding-bottom: 0rem !important;
+   margin-top: 0rem !important;
+   margin-bottom: 0rem !important;
+}
+
+.th_min, .td_min {
+   padding-right: .2rem !important;
+}
+
+button.close:hover {
+   color: white;
+   background-color: #ff0000;
+}
+
+a {
+   text-decoration: none;
+}
+
+a:hover {
+   cursor: pointer;
+}
+
+.error_ast {
+   font-size: large;
+   font-weight: bold;
+   padding-left: .5rem;
+}
+
+.error_message {
+   font-size: .85rem;
+}
+
+.link_row_item:hover {
+   cursor: pointer;
+}
+
+.btn-link {
+   font-size: .79rem;
+   text-decoration: none;
+}
+
+.btn-link-info {
+   color: #17a2b8;
+}
+
+.btn-link-primary {
+   color: #007bff;
+}
+
+.btn-link-danger {
+   color: #dc3545;
+}
+
+.small_90 {
+   font-size: 90%;
+   font-weight: 400;
+}
+
+   .small_80 {
+   font-size: 80%;
+   font-weight: 400;
+}
+
+   .custom-select {
+      padding-top: .1rem !important;
+      margin-top: .1rem !important;
+}
+
+.add_edit_modal {
+   background-color: whitesmoke;
+   font-size: .85rem;
+}
+
+.add_edit_modal .modal-footer {
+   padding-right: 1.5rem;
+}

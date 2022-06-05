@@ -1,0 +1,39 @@
+/* header */
+.nav-link {
+   color: black !important;
+   padding-right: 1.1rem !important;
+}
+
+/* main */
+#landing_page {
+   background: url("../../../src/assets/img/pexels-photo-2611686.jpeg") no-repeat center;
+   background-size: cover;
+   height: 90vh;
+}
+
+#landing_page .btn-outline-light {
+   color: black;
+   background-color: rgb(214, 214, 214);
+   font-weight: 600 !important;
+}
+
+#landing_page .btn-outline-light:hover {
+   color: white;
+   background-color: black;
+}
+
+#homepage_nav_tabs a.nav-link {
+   background-color:whitesmoke;
+   font-weight: 500;
+   margin-right: .1rem;
+   margin-left: .1rem;
+   border-top: 1px solid rgb(190, 190, 190);
+   border-left: 1px solid rgb(190, 190, 190);
+   border-right: 1px solid rgb(190, 190, 190);
+}
+
+#homepage_nav_tabs a.active {
+   background-color:white;
+}
+
+/* footer */

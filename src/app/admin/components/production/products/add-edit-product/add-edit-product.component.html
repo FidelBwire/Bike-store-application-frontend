@@ -1,0 +1,110 @@
+<div class="add_edit_modal">
+   <div class="modal-header">
+      <h1 class="modal-title h5">
+         <span *ngIf="product.id; else addingNewProduct">Edit Product</span>
+         <ng-template #addingNewProduct>New Product</ng-template>
+      </h1>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <form action="#" [formGroup]="productForm" (ngSubmit)="saveProduct()">
+      <div class="modal-body">
+         <div class="container-fluid">
+            <!-- <p>{{productFormStringValue()}}</p> -->
+            <div class="row">
+               <!-- <form action="#" [formGroup]="productForm" (ngSubmit)="saveProduct()"> -->
+                  <div class="row" [style.margin-bottom]="setMargin('name')">
+                     <div class="col pe-0">
+                        <label class="form-label">Product Name</label>
+                        <input type="text" id="productName" class="form-control"                                  
+                              placeholder="Enter product name" aria-label="Product Name" 
+                              required formControlName="name">
+                        <p class="text-danger" *ngIf="productForm.get('name')?.touched && 
+                                                         productForm.get('name')?.invalid">
+                           <span class="error_ast">&ast;</span><span class="error_message">
+                              Product name is required</span>
+                        </p>
+                     </div>
+                  </div>
+                  <div class="row" [style.margin-bottom]="setMargin('name')">
+                     <div class="col pe-0">
+                        <label class="form-label">Description</label>
+                        <!-- <div class="form-group"> -->
+                           <!-- <label for="my-textarea">Text</label> -->
+                           <textarea id="description" class="form-control" name="description" rows="3"
+                              required formControlName="description" placeholder="Enter product description"></textarea>
+                        <!-- </div> -->
+                        <p class="text-danger" *ngIf="productForm.get('description')?.touched && 
+                                                         productForm.get('description')?.invalid">
+                           <span class="error_ast">&ast;</span><span class="error_message">
+                              Product description is required</span>
+                        </p>
+                     </div>
+                  </div>        
+                  <div class="row">
+                     <div class="col pe-0 flex-row" [style.margin-bottom]="setMargin('modelYear')">
+                        <label class="form-label">Model Year</label>
+                        <input type="text" id="modelYear" class="form-control" placeholder="Enter Model Year"
+                           aria-label="Model Year" required formControlName="modelYear">
+                        <p class="text-danger" *ngIf="productForm.get('modelYear')?.touched && 
+                                                         productForm.get('modelYear')?.invalid">
+                           <span class="error_ast">&ast;</span><span class="error_message">
+                              Model year is required</span>
+                        </p>
+                     </div>
+                     <div class="col pe-0 flex-row" [style.margin-bottom]="setMargin('listPrice')">
+                        <label class="form-label">List Price</label>
+                        <input type="text" id="listPrice" class="form-control" placeholder="Enter List Price"
+                           aria-label="List Price" required formControlName="listPrice">
+                        <p class="text-danger" *ngIf="productForm.get('listPrice')?.touched && 
+                                                         productForm.get('listPrice')?.invalid">
+                           <span class="error_ast">&ast;</span><span class="error_message">
+                              Price list is required</span>
+                        </p>
+                     </div>   
+                  </div>
+                  <div class="row">
+                     <div class="col pe-0 flex-row">
+                        <label class="form-label">Brand:&nbsp;<span class="font-italic">{{brandName}}</span></label><br>
+                        <div ngbDropdown class="d-inline-block" *ngIf="brands">
+                           <h6 class="btn btn-link" id="brandsDropdown" >
+                              <span *ngIf="product.id; else addingNewBrand">Edit Brand</span>
+                              <ng-template #addingNewBrand>Select Brand</ng-template>
+                           </h6>
+                           <div ngbDropdownMenu aria-labelledby="brandsDropdown">
+                              <p class="text-danger" *ngIf="productForm.get('brand')?.touched && 
+                                                      productForm.get('brand')?.invalid">
+                                    Invalid Brand                 
+                              </p>
+                              <button class="dropdown-item small" *ngFor="let brand of brands"
+                                 (click)="setBrand(brand.id)">{{brand.name}}
+                              </button>
+                           </div>
+                        </div>
+                     </div>                                                   
+                     <div class="col pe-0 flex-row">
+                           <label class="form-label">Category:&nbsp;<span class="font-italic">{{categoryName}}</span></label><br>
+                           <div ngbDropdown class="d-inline-block" *ngIf="brands">
+                              <button class="btn btn-link" id="brandsDropdown" ngbDropdownToggle>
+                                 <span *ngIf="product.id; else addingNewCategory">Edit Category</span>
+                                 <ng-template #addingNewCategory>Select Category</ng-template>
+                              </button>
+                              <div ngbDropdownMenu aria-labelledby="brandsDropdown">
+                                 <button class="dropdown-item small" *ngFor="let category of categories"
+                                    (click)="setCategory(category.id)">{{category.name}}
+                                 </button>
+                              </div>
+                           </div>
+                     </div>
+                  </div>
+               <!-- </form> -->
+            </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <button type="submit" class="btn btn-primary btn-sm">Save</button>
+         <button type="button" class="btn btn-outline-danger btn-sm" (click)="activeModal.close('Close click')">Close</button>
+      </div>
+   </form>
+</div>

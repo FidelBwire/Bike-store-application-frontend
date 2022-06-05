@@ -1,0 +1,34 @@
+<div class="add_edit_modal">
+   <div class="modal-header">
+      <h1 class="modal-title h5">{{modalTitle}}</h1>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+   <form action="#" [formGroup]="brandForm" (ngSubmit)="saveBrand()">
+      <div class="modal-body">
+         <div class="container-fluid">
+            <!-- <p>{{productFormStringValue()}}</p> -->
+            <div class="row">
+               <div class="row pe-0" [style.margin-bottom]="setMargin('name')">
+                  <div class="col px-0">
+                     <label class="form-label">Name</label>
+                     <input type="text" id="brandName" class="form-control"                                  
+                           placeholder="Enter brand name" aria-label="Brand Name" 
+                           required formControlName="name">
+                     <p class="text-danger" *ngIf="brandForm.get('name')?.touched && 
+                                                      brandForm.get('name')?.invalid">
+                        <span class="error_ast">&ast;</span><span class="error_message">
+                           Brand name is required</span>
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <button type="submit" class="btn btn-primary btn-sm">Save</button>
+         <button type="button" class="btn btn-outline-danger btn-sm" (click)="activeModal.close('Close click')">Close</button>
+      </div>
+   </form>    
+</div>
